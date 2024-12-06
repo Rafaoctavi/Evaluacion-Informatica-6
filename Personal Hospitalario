@@ -1,0 +1,150 @@
+// Interfaz 
+public interface IPersonalHospitalario
+{
+    void AtenderPaciente();
+    void AdministrarMedicamento();
+}
+
+// Clase abstracta 
+public abstract class PersonalHospitalario : IPersonalHospitalario
+{
+    // Atributos/propiedades
+    public string Nombre { get; set; }
+    public int Edad { get; set; }
+    public string Identificacion { get; set; }
+
+    // Métodos de la interfaz
+    public abstract void AtenderPaciente();
+    public abstract void AdministrarMedicamento();
+
+    // Método adicional
+    public abstract void ParticiparEnCirugia();
+}
+
+// Clase Doctor 
+public class Doctor : PersonalHospitalario
+{
+    public string Especialidad { get; set; }
+
+    public override void AtenderPaciente()
+    {
+        Console.WriteLine($"{Nombre} está atendiendo a un paciente.");
+    }
+
+    public override void AdministrarMedicamento()
+    {
+        Console.WriteLine($"{Nombre} está administrando medicamentos.");
+    }
+
+    public void RecetarMedicamento()
+    {
+        Console.WriteLine($"{Nombre} está recetando medicamentos.");
+    }
+
+    public override void ParticiparEnCirugia()
+    {
+        Console.WriteLine($"{Nombre} está participando en una cirugía.");
+    }
+}
+
+// Clase Nurse 
+public class Nurse : PersonalHospitalario
+{
+    public string Turno { get; set; }
+
+    public override void AtenderPaciente()
+    {
+        Console.WriteLine($"{Nombre} está atendiendo a un paciente.");
+    }
+
+    public override void AdministrarMedicamento()
+    {
+        Console.WriteLine($"{Nombre} está administrando medicamentos.");
+    }
+
+    public override void ParticiparEnCirugia()
+    {
+        Console.WriteLine($"{Nombre} está participando en una cirugía.");
+    }
+
+    public void MonitorearPaciente()
+    {
+        Console.WriteLine($"{Nombre} está monitoreando al paciente.");
+    }
+}
+
+// Clase TécnicoDeEmergencias 
+public class TecnicoDeEmergencias : PersonalHospitalario
+{
+    public string AreaDeTrabajo { get; set; }
+
+    public override void AtenderPaciente()
+    {
+        Console.WriteLine($"{Nombre} está atendiendo a un paciente.");
+    }
+
+    public override void AdministrarMedicamento()
+    {
+        Console.WriteLine($"{Nombre} está administrando medicamentos.");
+    }
+
+    public override void ParticiparEnCirugia()
+    {
+        Console.WriteLine($"{Nombre} no participa en cirugías.");
+    }
+}
+
+// Clase Consultor 
+public class Consultor : PersonalHospitalario
+{
+    public string CampoDeEspecialidad { get; set; }
+
+    public override void AtenderPaciente()
+    {
+        Console.WriteLine($"{Nombre} no atiende pacientes directamente.");
+    }
+
+    public override void AdministrarMedicamento()
+    {
+        Console.WriteLine($"{Nombre} no administra medicamentos.");
+    }
+
+    public void RecetarMedicamento()
+    {
+        Console.WriteLine($"{Nombre} está recetando medicamentos.");
+    }
+
+    public override void ParticiparEnCirugia()
+    {
+        Console.WriteLine($"{Nombre} está participando en una cirugía como especialista.");
+    }
+}
+
+// Program 
+class Program
+{
+    static void Main()
+    {
+        Doctor doctor = new Doctor { Nombre = "Dr. Juan", Especialidad = "Cardiología" };
+        Nurse nurse = new Nurse { Nombre = "Ana", Turno = "Noche" };
+        TecnicoDeEmergencias tecnicoDeEmergencias = new TecnicoDeEmergencias { Nombre = "Luis", AreaDeTrabajo = "Emergencias" };
+        Consultor consultor = new Consultor { Nombre = "Dra. Marta", CampoDeEspecialidad = "Neurología" };
+
+        doctor.AtenderPaciente();
+        doctor.AdministrarMedicamento();
+        doctor.ParticiparEnCirugia();
+        doctor.RecetarMedicamento();
+
+        nurse.AtenderPaciente();
+        nurse.AdministrarMedicamento();
+        nurse.ParticiparEnCirugia();
+        nurse.MonitorearPaciente();
+
+        tecnicoDeEmergencias.AtenderPaciente();
+        tecnicoDeEmergencias.AdministrarMedicamento();
+        tecnicoDeEmergencias.ParticiparEnCirugia(); // Este método no hará nada relevante para técnicos de emergencias
+
+        consultor.ParticiparEnCirugia();
+        consultor.RecetarMedicamento();
+    }
+}
