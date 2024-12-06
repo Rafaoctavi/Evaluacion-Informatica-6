@@ -21,8 +21,8 @@ public abstract class PersonalHospitalario : IPersonalHospitalario
     public abstract void ParticiparEnCirugia();
 }
 
-// Clase Doctor 
-public class Doctor : PersonalHospitalario
+// Clase médico 
+public class Medico : PersonalHospitalario
 {
     public string Especialidad { get; set; }
 
@@ -47,8 +47,8 @@ public class Doctor : PersonalHospitalario
     }
 }
 
-// Clase Nurse 
-public class Nurse : PersonalHospitalario
+// Clase enfermera 
+public class Enfermera : PersonalHospitalario
 {
     public string Turno { get; set; }
 
@@ -73,8 +73,8 @@ public class Nurse : PersonalHospitalario
     }
 }
 
-// Clase TécnicoDeEmergencias 
-public class TecnicoDeEmergencias : PersonalHospitalario
+// Clase Paramédico 
+public class Paramedico : PersonalHospitalario
 {
     public string AreaDeTrabajo { get; set; }
 
@@ -94,8 +94,8 @@ public class TecnicoDeEmergencias : PersonalHospitalario
     }
 }
 
-// Clase Consultor 
-public class Consultor : PersonalHospitalario
+// Clase especialista 
+public class Especialista : PersonalHospitalario
 {
     public string CampoDeEspecialidad { get; set; }
 
@@ -125,26 +125,27 @@ class Program
 {
     static void Main()
     {
-        Doctor doctor = new Doctor { Nombre = "Dr. Juan", Especialidad = "Cardiología" };
-        Nurse nurse = new Nurse { Nombre = "Ana", Turno = "Noche" };
-        TecnicoDeEmergencias tecnicoDeEmergencias = new TecnicoDeEmergencias { Nombre = "Luis", AreaDeTrabajo = "Emergencias" };
-        Consultor consultor = new Consultor { Nombre = "Dra. Marta", CampoDeEspecialidad = "Neurología" };
+        // Cambiando los nombres de las instancias
+        Medico medico = new Medico { Nombre = "Dr. Carlos", Especialidad = "Cardiología" };
+        Enfermera enfermera = new Enfermera { Nombre = "Laura", Turno = "Noche" };
+        Paramedico paramedico = new Paramedico { Nombre = "Javier", AreaDeTrabajo = "Emergencias" };
+        Especialista especialista = new Especialista { Nombre = "Dra. Sofia", CampoDeEspecialidad = "Neurología" };
 
-        doctor.AtenderPaciente();
-        doctor.AdministrarMedicamento();
-        doctor.ParticiparEnCirugia();
-        doctor.RecetarMedicamento();
+        medico.AtenderPaciente();
+        medico.AdministrarMedicamento();
+        medico.ParticiparEnCirugia();
+        medico.RecetarMedicamento();
 
-        nurse.AtenderPaciente();
-        nurse.AdministrarMedicamento();
-        nurse.ParticiparEnCirugia();
-        nurse.MonitorearPaciente();
+        enfermera.AtenderPaciente();
+        enfermera.AdministrarMedicamento();
+        enfermera.ParticiparEnCirugia();
+        enfermera.MonitorearPaciente();
 
-        tecnicoDeEmergencias.AtenderPaciente();
-        tecnicoDeEmergencias.AdministrarMedicamento();
-        tecnicoDeEmergencias.ParticiparEnCirugia(); // Este método no hará nada relevante para técnicos de emergencias
+        paramedico.AtenderPaciente();
+        paramedico.AdministrarMedicamento();
+        paramedico.ParticiparEnCirugia(); // Este método no hará nada relevante para paramédicos
 
-        consultor.ParticiparEnCirugia();
-        consultor.RecetarMedicamento();
+        especialista.ParticiparEnCirugia();
+        especialista.RecetarMedicamento();
     }
 }
