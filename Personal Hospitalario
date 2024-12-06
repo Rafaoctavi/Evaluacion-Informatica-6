@@ -1,151 +1,152 @@
-// Interfaz 
-public interface IPersonalHospitalario
+// Interfaz para el personal del hospital
+public interface IEquipoMedico
 {
     void AtenderPaciente();
     void AdministrarMedicamento();
 }
 
-// Clase abstracta 
-public abstract class PersonalHospitalario : IPersonalHospitalario
+// Clase base para el personal del hospital
+public abstract class PersonalMedico : IEquipoMedico
 {
-    // Atributos/propiedades
-    public string Nombre { get; set; }
+    // Propiedades del personal
+    public string NombreCompleto { get; set; }
     public int Edad { get; set; }
-    public string Identificacion { get; set; }
+    public string NumeroIdentificacion { get; set; }
 
     // Métodos de la interfaz
     public abstract void AtenderPaciente();
     public abstract void AdministrarMedicamento();
 
     // Método adicional
-    public abstract void ParticiparEnCirugia();
+    public abstract void ParticiparEnOperacion();
 }
 
-// Clase médico 
-public class Medico : PersonalHospitalario
+// Clase para médicos
+public class Doctor : PersonalMedico
 {
-    public string Especialidad { get; set; }
+    public string EspecialidadMedica { get; set; }
 
     public override void AtenderPaciente()
     {
-        Console.WriteLine($"{Nombre} está atendiendo a un paciente.");
+        Console.WriteLine($"{NombreCompleto} está atendiendo a un paciente.");
     }
 
     public override void AdministrarMedicamento()
     {
-        Console.WriteLine($"{Nombre} está administrando medicamentos.");
+        Console.WriteLine($"{NombreCompleto} está administrando medicamentos.");
     }
 
     public void RecetarMedicamento()
     {
-        Console.WriteLine($"{Nombre} está recetando medicamentos.");
+        Console.WriteLine($"{NombreCompleto} está recetando medicamentos.");
     }
 
-    public override void ParticiparEnCirugia()
+    public override void ParticiparEnOperacion()
     {
-        Console.WriteLine($"{Nombre} está participando en una cirugía.");
+        Console.WriteLine($"{NombreCompleto} está participando en una operación.");
     }
 }
 
-// Clase enfermera 
-public class Enfermera : PersonalHospitalario
+// Clase para enfermeras
+public class Enfermera : PersonalMedico
 {
-    public string Turno { get; set; }
+    public string TurnoLaboral { get; set; }
 
     public override void AtenderPaciente()
     {
-        Console.WriteLine($"{Nombre} está atendiendo a un paciente.");
+        Console.WriteLine($"{NombreCompleto} está atendiendo a un paciente.");
     }
 
     public override void AdministrarMedicamento()
     {
-        Console.WriteLine($"{Nombre} está administrando medicamentos.");
+        Console.WriteLine($"{NombreCompleto} está administrando medicamentos.");
     }
 
-    public override void ParticiparEnCirugia()
+    public override void ParticiparEnOperacion()
     {
-        Console.WriteLine($"{Nombre} está participando en una cirugía.");
+        Console.WriteLine($"{NombreCompleto} está participando en una operación.");
     }
 
-    public void MonitorearPaciente()
+    public void MonitorearEstadoPaciente()
     {
-        Console.WriteLine($"{Nombre} está monitoreando al paciente.");
+        Console.WriteLine($"{NombreCompleto} está monitoreando al paciente.");
     }
 }
 
-// Clase Paramédico 
-public class Paramedico : PersonalHospitalario
+// Clase para paramédicos
+public class Paramedico : PersonalMedico
 {
-    public string AreaDeTrabajo { get; set; }
+    public string AreaDeServicio { get; set; }
 
     public override void AtenderPaciente()
     {
-        Console.WriteLine($"{Nombre} está atendiendo a un paciente.");
+        Console.WriteLine($"{NombreCompleto} está atendiendo a un paciente.");
     }
 
     public override void AdministrarMedicamento()
     {
-        Console.WriteLine($"{Nombre} está administrando medicamentos.");
+        Console.WriteLine($"{NombreCompleto} está administrando medicamentos.");
     }
 
-    public override void ParticiparEnCirugia()
+    public override void ParticiparEnOperacion()
     {
-        Console.WriteLine($"{Nombre} no participa en cirugías.");
+        Console.WriteLine($"{NombreCompleto} no participa en operaciones.");
     }
 }
 
-// Clase especialista 
-public class Especialista : PersonalHospitalario
+// Clase para especialistas
+public class Especialista : PersonalMedico
 {
-    public string CampoDeEspecialidad { get; set; }
+    public string CampoEspecializado { get; set; }
 
     public override void AtenderPaciente()
     {
-        Console.WriteLine($"{Nombre} no atiende pacientes directamente.");
+        Console.WriteLine($"{NombreCompleto} no atiende pacientes directamente.");
     }
 
     public override void AdministrarMedicamento()
     {
-        Console.WriteLine($"{Nombre} no administra medicamentos.");
+        Console.WriteLine($"{NombreCompleto} no administra medicamentos.");
     }
 
     public void RecetarMedicamento()
     {
-        Console.WriteLine($"{Nombre} está recetando medicamentos.");
+        Console.WriteLine($"{NombreCompleto} está recetando medicamentos.");
     }
 
-    public override void ParticiparEnCirugia()
+    public override void ParticiparEnOperacion()
     {
-        Console.WriteLine($"{Nombre} está participando en una cirugía como especialista.");
+        Console.WriteLine($"{NombreCompleto} está participando en una operación como especialista.");
     }
 }
 
-// Program 
-class Program
+// Clase principal
+class Programa
 {
     static void Main()
     {
-        // Cambiando los nombres de las instancias
-        Medico medico = new Medico { Nombre = "Dr. Carlos", Especialidad = "Cardiología" };
-        Enfermera enfermera = new Enfermera { Nombre = "Laura", Turno = "Noche" };
-        Paramedico paramedico = new Paramedico { Nombre = "Javier", AreaDeTrabajo = "Emergencias" };
-        Especialista especialista = new Especialista { Nombre = "Dra. Sofia", CampoDeEspecialidad = "Neurología" };
+        // Creando instancias del personal médico
+        Doctor doctor = new Doctor { NombreCompleto = "Dr. Andrés", EspecialidadMedica = "Pediatría" };
+        Enfermera enfermera = new Enfermera { NombreCompleto = "Ana", TurnoLaboral = "Día" };
+        Paramedico paramedico = new Paramedico { NombreCompleto = "Luis", AreaDeServicio = "Urgencias" };
+        Especialista especialista = new Especialista { NombreCompleto = "Dra. Elena", CampoEspecializado = "Cardiología" };
 
-        medico.AtenderPaciente();
-        medico.AdministrarMedicamento();
-        medico.ParticiparEnCirugia();
-        medico.RecetarMedicamento();
+        // Ejecución de métodos
+        doctor.AtenderPaciente();
+        doctor.AdministrarMedicamento();
+        doctor.ParticiparEnOperacion();
+        doctor.RecetarMedicamento();
 
         enfermera.AtenderPaciente();
         enfermera.AdministrarMedicamento();
-        enfermera.ParticiparEnCirugia();
-        enfermera.MonitorearPaciente();
+        enfermera.ParticiparEnOperacion();
+        enfermera.MonitorearEstadoPaciente();
 
         paramedico.AtenderPaciente();
         paramedico.AdministrarMedicamento();
-        paramedico.ParticiparEnCirugia(); // Este método no hará nada relevante para paramédicos
+        paramedico.ParticiparEnOperacion(); // Este método no hará nada relevante para paramédicos
 
-        especialista.ParticiparEnCirugia();
+        especialista.ParticiparEnOperacion();
         especialista.RecetarMedicamento();
     }
 }
